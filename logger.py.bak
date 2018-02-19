@@ -75,7 +75,7 @@ class logger:
             self._n+=1
 
         if plusstdout:
-            print(message)
+            print message
 
         if self._store_level==1 and msgtype=='f':
             self._store.append(message)
@@ -118,33 +118,31 @@ class logger:
             self._file.write(message+'\n')
             self._file.flush()
             if plusstdout:
-                print(message)
+                print message
             m=message+'\n'
             return str(m)
         elif self._debug==2 and (msgtype in ('d','b')):
             self._file.write(message+'\n')
             self._file.flush()
             if plusstdout:
-                print(message)
+                print message
             m=message+'\n'
             return str(m)
         elif self._debug>=3 and (msgtype in ('d','b','g')):
             self._file.write(message+'\n')
             self._file.flush()
             if plusstdout:
-                print(message)
+                print message
             m=message+'\n'
             return str(m)
 
     def getlogs(self):
-        return self._store
-        
+        return self._store;
+
     def __del__(self):
         self._file.close()
     def close(self):
-        self.__del__()
-        #del self
-	   
+	   self.__del__()
 if __name__=='__main__':
     log=logger('test.log',store_level=0,debug_level=3)
     log.msg('n','=*='*20,1)
@@ -152,9 +150,9 @@ if __name__=='__main__':
     log.msg('w','Some warning message!',1)
     log.msg('f','Some fault message!',1)
     log.msg('m','Some message!',1)
-    print(log.msg('m','Some message!',0))
-    print('-----------------------')
-    print(log.getlogs())
+    print log.msg('m','Some message!',0)
+    print '-----------------------'
+    print log.getlogs()
     log._debug=0
     log.dbg('d','Не должен ничего вывести',1)
     log._debug=1
